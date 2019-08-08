@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for RentAGuide app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -r esm server.js"
+  },
+  "keywords": [
+    "Tourism",
+    "Api"
+  ],
+  "author": "Luciano Peranni",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "sequelize": "^5.12.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
