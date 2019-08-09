@@ -17,6 +17,7 @@
     "dotenv": "^8.0.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "pg": "^7.12.0",
     "sequelize": "^5.12.3"
   },
   "devDependencies": {

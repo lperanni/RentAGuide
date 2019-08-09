@@ -1,7 +1,7 @@
 {
-  "name": "rentaguide.frontend",
+  "name": "rentaguide",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Client Side of RentAGuid app",
   "author": "lperanni <lucianoperanni95@gmail.com>",
   "private": true,
   "scripts": {

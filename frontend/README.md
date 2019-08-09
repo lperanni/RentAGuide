@@ -1,6 +1,6 @@
-# rentaguide.frontend
+# rentaguide
 
-> A Vue.js project
+> Client Side of RentAGuid app
 
 ## Build Setup
 
