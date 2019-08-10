@@ -30,8 +30,17 @@ module.exports = (sequelize, DataTypes) => {
     },
     telephone: DataTypes.TEXT
   }, {});
-  Guide.associate = function(models) {
-    // associations can be defined here
+  Guide.associate = (models) => {
+    Guide.belongsToMany(models.service, {
+      through: 'guide_services',
+      as: 'Service',
+      foreignKey: 'guideId'
+    });
+    Guide.belongsToMany(models.language, {
+      through: 'guide_known_languages',
+      as: 'Language',
+      foreignKey: 'guideId'
+    });
   };
   return Guide;
 };
