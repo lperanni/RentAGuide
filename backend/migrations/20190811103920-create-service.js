@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      servicename: {
+      service_name: {
         type: Sequelize.STRING
       }
     });

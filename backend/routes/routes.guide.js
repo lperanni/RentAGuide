@@ -1,8 +1,15 @@
 import { Router } from "express";
 import guideController from "../controllers/guideController";
+import guide from "../models/guide";
 
 const router = Router();
 
-router.get("/", (req, res) => guideController.getGuide(req,res));
+// ROUTE = "/guide"
+
+router.get("/", (req, res) => guideController.getGuides(req,res));
+
+router.get("/:id", (req,res) => guideController.getGuideById(req,res));
+
+router.post("/", (req, res) => guideController.postGuide(req,res));
 
 export default router;

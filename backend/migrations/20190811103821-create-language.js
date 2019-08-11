@@ -8,9 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      languagename: {
+      language_name: {
         type: Sequelize.STRING
-      }
+      }  
     });
   },
   down: (queryInterface, Sequelize) => {

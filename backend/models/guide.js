@@ -1,46 +1,19 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Guide = sequelize.define('Guide', {
-    firstname: {
-      type: DataTypes.STRING,
-      AllowNull: false,
-      validate: {
-        len: [1, 50]
-      }
-    },
-    lastname: {
-      type: DataTypes.STRING,
-      AllowNull: false,
-      validate: {
-        len: [1, 50]
-      }
-    },
-    email:{
-      type: DataTypes.STRING,
-      unique: true,
-      validate: {
-        isEmail: true
-      }
-    },
-    address: {
-      type: DataTypes.STRING,
-      validate: {
-        len: [5, 150]
-      }
-    },
-    telephone: DataTypes.TEXT
-  }, {});
-  Guide.associate = (models) => {
-    Guide.belongsToMany(models.service, {
-      through: 'guide_services',
-      as: 'Service',
-      foreignKey: 'guideId'
-    });
-    Guide.belongsToMany(models.language, {
-      through: 'guide_known_languages',
-      as: 'Language',
-      foreignKey: 'guideId'
-    });
+    first_name: DataTypes.STRING,
+    last_name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    phone_number: DataTypes.STRING,
+    joined: DataTypes.DATE,
+    password: DataTypes.STRING
+  }, {timestamps:false});
+  Guide.associate = function(models) {
+
+    Guide.belongsToMany(models.Service, {through: 'Guide_Services', foreignKey: 'guideID'});
+    Guide.belongsTo(models.Job);
+    Guide.belongsToMany(models.Language, {through: 'Guide_Known_Languages', foreignKey: 'guideID'});
+    Guide.belongsToMany(models.User, {through: 'Ratings', 'foreignKey':'guideID'});
   };
   return Guide;
 };
