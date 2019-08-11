@@ -6,7 +6,13 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     phone_number: DataTypes.STRING,
     joined: DataTypes.DATE,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    full_name: {
+      type: DataTypes.VIRTUAL,
+      get(){
+        return this.getDataValue('first_name') + ' ' + this.getDataValue('last_name')
+      }
+    }
   }, {timestamps:false});
   Guide.associate = function(models) {
 
