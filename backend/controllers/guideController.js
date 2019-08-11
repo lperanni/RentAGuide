@@ -54,6 +54,27 @@ export default class GuideController {
       .catch(err => res.status(409).send(err));
   }
 
+  static async changePassword(){
+    models.Guide.update({
+      password: req.body.password
+    },
+    {
+      where: {
+        id: Number(req.params.id)
+      }
+    }).then(() => res.sendStatus(204))
+      .catch(err => res.status(409).send(err));
+  }
+
+  static async deleteGuide(req,res){
+    models.Guide.destroy({
+      where: {
+        id: Number(req.params.id)
+      }
+    }).then(() => res.sendStatus(204))
+      .catch(err => res.status(404).send(err));
+  }
+
 
 
   
