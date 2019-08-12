@@ -4,12 +4,11 @@ const check = {
     if(req.isAuthenticated()) {
       return next();
     }
-
-    res.redirect("/login")
+    res.send("I dont use this function");
   },
   checkNotAuthenticated(req, res, next) {
     if(req.isAuthenticated()){
-      return res.redirect('/')
+      return res.send("Already logged in");
     }
     next()
   }

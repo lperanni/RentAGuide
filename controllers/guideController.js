@@ -1,4 +1,28 @@
 import models from "../models";
+import bcrypt from 'bcrypt';
+import passport from 'passport';
+
+import { initializePassport } from '../services/passport-config';
+
+initializePassport(
+  passport,
+  email => models.Guide.findAll({
+    limit: 1,
+    attributes: ['id', 'first_name', 'last_name', 'email', 'password', 'phone_number'],
+    where: {
+      email: email
+    },
+    plain: true
+  }).then(result => result.get()),
+  id => models.Guide.findAll({
+    limit: 1,
+    attributes: ['id', 'first_name', 'last_name', 'email', 'password', 'phone_number'],
+    where: {
+      id: id
+    },
+    plain: true,
+  }).then(result => result.get())
+);
 
 export default class GuideController {
   
@@ -11,18 +35,20 @@ export default class GuideController {
     .catch(err => res.status(404).send("No users found\n" + err));
   }
 
-  static async postGuide(req, res){
+  static async registerGuide(req, res){
 
-    const { firstName, lastName, email, phone_number, password } = req.body;
-
-    models.Guide.create({ 
+    const { firstName, lastName, email, password, phoneNumber} = req.body;
+      
+      const hash = await bcrypt.hash(password, 10)
+      models.Guide.create({
         first_name: firstName, 
         last_name: lastName, 
         email: email, 
-        phone_number: phone_number, 
-        password: password,
-        joined: new Date()}
-    ).then(data => res.send(data)).catch(err => res.send(err));
+        phone_number: phoneNumber,
+        joined: new Date(), 
+        password: hash
+      }).then(() => res.sendStatus(204))
+        .catch(err => res.status(404).send(err))
   }
 
   static async getGuideById(req, res){
@@ -54,9 +80,9 @@ export default class GuideController {
       .catch(err => res.status(409).send(err));
   }
 
-  static async changePassword(){
+  static async changePassword(req, res){
     models.Guide.update({
-      password: req.body.password
+      password: await bcrypt.hash(req.body.password, 10)
     },
     {
       where: {
@@ -75,7 +101,9 @@ export default class GuideController {
       .catch(err => res.status(404).send(err));
   }
 
-
-
+  static async signOut(req, res){
+    req.logOut();
+    res.status(200).send("Logout successfull");
+  }
   
 }

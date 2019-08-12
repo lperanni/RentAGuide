@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import session from 'express-session';
 import passport from 'passport';
-import check from '../services/authenticationCheck';
-import authController from '../controllers/authController';
+import check from '../../services/authenticationCheck';
+import authController from '../../controllers/authController';
 const router = Router();
 
 //MIDDLEWARE
@@ -18,8 +18,8 @@ router.use(passport.session());
 // ROUTE = "/"
 
 router.post('/register', check.checkNotAuthenticated, (req, res) => authController.registerUser(req, res));
-router.post('/login', check.checkNotAuthenticated, passport.authenticate('local'));
-router.delete('/logout', (req, res) => { req.logOut()});
+router.post('/login', check.checkNotAuthenticated, passport.authenticate('user-local'), (req, res) => res.sendStatus(204));
+router.delete('/logout', (req, res) => authController.signOut(req, res));
 
 
 export default router;

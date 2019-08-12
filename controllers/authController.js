@@ -11,15 +11,17 @@ initializePassport(
     attributes: ['id', 'first_name', 'last_name', 'email', 'password'],
     where: {
       email: email
-    }
-  }),
+    },
+    plain: true
+  }).then(result => result.get()),
   id => models.User.findAll({
     limit: 1,
     attributes: ['id', 'first_name', 'last_name', 'email', 'password'],
     where: {
       id: id
-    }
-  })
+    },
+    plain: true,
+  }).then(result => result.get())
 );
 
 export default class AuthController{
@@ -38,4 +40,8 @@ export default class AuthController{
         .catch(err => res.status(404).send(err))
   }
 
+  static async signOut(req,res){
+    req.logOut();
+    res.status(200).send("Logout successfull");
+  }
 }
