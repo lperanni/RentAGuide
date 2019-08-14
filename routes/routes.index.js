@@ -6,6 +6,8 @@ import jobRouter from './job/routes.job';
 
 const router = Router();
 
+// Route = "/api"
+
 
 router.use("/guide", guideRouter);
 router.use("/user", userRouter);

@@ -15,7 +15,7 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 
-// ROUTE = "/"
+// ROUTE = "/user/auth"
 
 router.post('/register', check.checkNotAuthenticated, (req, res) => authController.registerUser(req, res));
 router.post('/login', check.checkNotAuthenticated, passport.authenticate('user-local'), (req, res) => res.sendStatus(204));

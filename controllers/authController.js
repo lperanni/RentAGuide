@@ -28,12 +28,12 @@ export default class AuthController{
   
   static async registerUser(req, res){
 
-    const { firstName, lastName, email, password} = req.body;
+    const { first_name, last_name, email, password} = req.body;
       
       const hash = await bcrypt.hash(password, 10)
       models.User.create({
-        first_name: firstName, 
-        last_name: lastName, 
+        first_name: first_name, 
+        last_name: last_name, 
         email: email, 
         password: hash
       }).then(() => res.sendStatus(204))
