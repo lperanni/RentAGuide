@@ -21,5 +21,15 @@ router.patch("/:id/password", (req,res) => guideController.changePassword(req,re
 
 router.delete("/:id", (req,res) => guideController.deleteGuide(req,res));
 
+router.get("/:id/ratings", (req, res) => guideController.getAllRatings(req, res));
+
+router.get("/:id/ratings/total", (req, res) => guideController.getTotalRating(req, res));
+
+router.post("/:id/language", (req, res) => guideController.addLanguage(req, res));
+
+router.get("/:id/language", (req, res) => guideController.getAllKnownLanguages(req, res));
+
+router.get("/language/:languageId", (req, res) => guideController.getAllGuidesByLanguage(req, res));
+
 
 export default router;
