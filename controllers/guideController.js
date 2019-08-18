@@ -129,5 +129,62 @@ export default class GuideController {
       }))
       .catch(err => res.send(err));
   }
+
+  static async postService(req, res){
+    
+    const { serviceID, price } = req.body;
+
+    models.Guide_Service.create({
+      guideID: req.params.id,
+      serviceID: serviceID,
+      price: price
+    }).then(data => res.json(data))
+      .catch(err => res.send(err));
+  }
+
+  static async getAllServicesByGuide(req, res){
+
+    models.Guide_Service.findAll({
+      attributes: ['guideID','serviceID','price'],
+      include: [{
+        model: models.Service,
+        attributes: ['service_name'],
+      }],
+      where: {
+        guideID: req.params.id
+      }
+    }).then(data => res.json(data))
+      .catch(err => res.send(err));
+
+  }
+
+  static async addKnownLanguage(req, res){
+
+    const { languageID } = req.body;
+
+
+    models.Guide_Known_Language.create({
+      guideID: req.params.id,
+      languageID: languageID
+    })
+    .then(data => res.json(data))
+    .catch(err => res.send(err));
+  }
+
+  static async getAllKnownLanguages(req, res){
+
+    models.Guide_Known_Language.findAll({
+      attributes: ['languageID'],
+      include: [{
+        model: models.Language,
+        attributes: ['language_name'],
+      }],
+      where: {
+        guideID: req.params.id
+      }
+
+    }).then(data => res.json(data))
+      .catch(err => res.send(err));
+  }
   
 }

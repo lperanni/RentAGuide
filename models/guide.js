@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         return this.getDataValue('first_name') + ' ' + this.getDataValue('last_name')
       }
     }
-  }, {timestamps:false});
+  }, { timestamps:false });
   Guide.associate = function(models) {
 
     Guide.belongsToMany(models.Service, {through: 'Guide_Services', foreignKey: 'guideID'});

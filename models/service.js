@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false
   });
   Service.associate = function(models) {
-    Service.belongsToMany(models.Guide, { through: 'guide_services', foreignKey:'serviceID' });
+    Service.belongsToMany(models.Guide, { through: 'Guide_Services', foreignKey:'serviceID' });
     Service.belongsTo(models.Job);
   };
   return Service;

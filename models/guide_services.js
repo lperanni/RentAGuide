@@ -11,11 +11,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     price: DataTypes.INTEGER
     
-  }, {timestamps:false});
+  }, 
+  { 
+    timestamps: false 
+  });
   Guide_Service.associate = function(models) {
 
-    Guide_Service.belongsTo(models.User);
-    Guide_Service.belongsTo(models.Guide);
+    Guide_Service.belongsTo(models.Service, { foreignKey: 'serviceID'});
+    Guide_Service.belongsTo(models.Guide, { foreignKey: 'guideID'});
   };
   return Guide_Service;
 };
