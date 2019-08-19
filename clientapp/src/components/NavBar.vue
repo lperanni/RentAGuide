@@ -10,10 +10,12 @@
       </v-btn>
     </v-app-bar>
     <v-navigation-drawer app class="primary" v-model="drawer">
-      <v-avatar size="100">
-        <img src="../assets/images/avatar.jpeg" class="text-lg-center" alt="a picture">
-      </v-avatar>
-      <v-list>
+      <v-container class="text-center mt-5">
+        <v-avatar size="150">
+          <img src="../assets/images/avatar.jpeg" class="text-lg-center" alt="a picture" @click="goToProfile">
+        </v-avatar>
+      </v-container>
+      <v-list class="mx-2">
         <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
           <v-list-item-action>
             <v-icon class="white--text">{{ link.icon }}</v-icon>
@@ -31,13 +33,14 @@
 
 <script>
 import store from '../store';
+import router from '../router';
 
 export default {
   data() {
     return {
       drawer: false,
       links: [
-        { icon: 'mdi-view-dashboard', text: 'Dashboard', route: '/'},
+        { icon: 'mdi-view-dashboard', text: 'Home', route: '/'},
         { icon: 'mdi-account', text: 'Profile', route: '/profile'},
         { icon: 'mdi-contact-mail', text: 'Contact', route: '/contact'},
       ],
@@ -56,12 +59,18 @@ export default {
       }else{
         this.active = 0;
       }
+    },
+    goToProfile(){
+      router.push("/profile");
     }
   }
   
 }
 </script>
 
-<style  scoped>
+<style scoped>
+  img:hover{
+    cursor: pointer;
+  }
 
 </style>
