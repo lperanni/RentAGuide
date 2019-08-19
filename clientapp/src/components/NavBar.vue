@@ -4,7 +4,7 @@
       <v-app-bar-nav-icon dark @click="drawer = ! drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase">Rent a Guide</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text dark @click="attemptAuth">
+      <v-btn text dark @click="completeAuth">
         <span>{{ navButton[active].text}}</span>
         <v-icon right>{{ navButton[active].icon}}</v-icon>
       </v-btn>
@@ -48,20 +48,26 @@ export default {
         { icon: 'mdi-application-import', text:'Login', method: 'logIn'},
         { icon: 'mdi-application-export', text:'Sign out', method: 'logOut'}
       ],
-      active: 0,
     }
   },
   methods: {
-    attemptAuth(){
-      store.commit(this.navButton[this.active].method);
-      if (store.state.isLoggedIn == true){
-        this.active = 1;
-      }else{
-        this.active = 0;
+    completeAuth(){
+      if (this.active == 0) {
+        router.push('/login');
+      } else { 
+        store.commit('logOut');
       }
     },
     goToProfile(){
       router.push("/profile");
+    }
+  },
+  computed: {
+    active () {
+      if(store.state.isLoggedIn == true) {
+        return 1
+      } 
+      return 0;
     }
   }
   

@@ -25,6 +25,7 @@
       <v-btn color="success" class="mr-4" :disabled="!valid" @click="registerUser">Register</v-btn>
       <v-btn color="warning" class="mr-4" @click="goToLogin">Login</v-btn>
     </v-form>
+    <p class="subtitle-1 mt-4">Want to know more about <router-link to="about">us?</router-link></p>
   </v-container>
 </template>
 
@@ -32,6 +33,8 @@
 
 import router from '../router';
 import axios from 'axios';
+import store from '../store';
+
 
 export default {
   data(){
@@ -50,12 +53,12 @@ export default {
       router.push("/login");
     },
     registerUser(){
-      axios.post("http://localhost:5000/api/user/auth/register",{
+      axios.post('http://localhost:5000/api/user/auth/register' ,{
         first_name: this.first_name,
         last_name: this.last_name,
         email: this.email,
         password: this.password
-      }).then(res => console.log(res))
+      }).then(res => store.commmit('logIn', { email: this.email.trim(), password: this.password }))
         .catch(err => console.log(err));
     }
 

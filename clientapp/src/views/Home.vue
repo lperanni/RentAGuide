@@ -19,12 +19,15 @@ export default {
   },
   computed: {
     loggedIn(){
-      if(store.state.isLoggedIn == true){
+      if(store.state.isLoggedIn === true){
         return true;
       }else{
         return false;
       }
     }
+  },
+  mounted(){
+    this.loggedIn;
   }
 };
 </script>

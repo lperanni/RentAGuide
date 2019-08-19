@@ -36,7 +36,7 @@ export default class AuthController{
         last_name: last_name, 
         email: email, 
         password: hash
-      }).then(() => res.sendStatus(204))
+      }).then((data) => res.send(data))
         .catch(err => res.status(404).send(err))
   }
 
