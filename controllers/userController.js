@@ -44,4 +44,16 @@ export default class UserController {
     }).then(() => res.sendStatus(204))
       .catch(err => res.status(409).send(err));
   }
+
+  static async rateGuide(req, res) {
+    const { id } = req.body;
+
+    models.Rating.create({
+      guideID: id,
+      userID: req.params.id,
+      rating: req.body.rating
+    })
+    .then(() => res.status(204).send("Successfully rated"))
+    .catch(err => "Error processing: " + err);
+  }
 }

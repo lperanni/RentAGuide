@@ -37,14 +37,14 @@ export default class GuideController {
 
   static async registerGuide(req, res){
 
-    const { firstName, lastName, email, password, phoneNumber} = req.body;
+    const { first_name, last_name, email, password, phone_number} = req.body;
       
       const hash = await bcrypt.hash(password, 10)
       models.Guide.create({
-        first_name: firstName, 
-        last_name: lastName, 
+        first_name: first_name, 
+        last_name: last_name, 
         email: email, 
-        phone_number: phoneNumber,
+        phone_number: phone_number,
         joined: new Date(), 
         password: hash
       }).then(() => res.sendStatus(204))
@@ -104,6 +104,87 @@ export default class GuideController {
   static async signOut(req, res){
     req.logOut();
     res.status(200).send("Logout successfull");
+  }
+
+  static async getAllRatings(req, res){
+    models.Rating.findAll({
+      attributes: ['userID', 'rating'],
+      where: {
+        guideID: req.params.id
+      }
+    }).then(data => res.status(200).json(data))
+      .catch(err => res.send(err));
+  }
+
+  static async getTotalRating(req, res){
+    models.Rating.findAll({
+      attributes: ['rating'],
+      where: {
+        guideID: req.params.id
+      }
+    }).then(results => res.json({ 
+        total: results.reduce(function(prev, cur) {
+          return prev + cur.rating;
+        }, 0) / results.length
+      }))
+      .catch(err => res.send(err));
+  }
+
+  static async postService(req, res){
+    
+    const { serviceID, price } = req.body;
+
+    models.Guide_Service.create({
+      guideID: req.params.id,
+      serviceID: serviceID,
+      price: price
+    }).then(data => res.json(data))
+      .catch(err => res.send(err));
+  }
+
+  static async getAllServicesByGuide(req, res){
+
+    models.Guide_Service.findAll({
+      attributes: ['guideID','serviceID','price'],
+      include: [{
+        model: models.Service,
+        attributes: ['service_name'],
+      }],
+      where: {
+        guideID: req.params.id
+      }
+    }).then(data => res.json(data))
+      .catch(err => res.send(err));
+
+  }
+
+  static async addKnownLanguage(req, res){
+
+    const { languageID } = req.body;
+
+
+    models.Guide_Known_Language.create({
+      guideID: req.params.id,
+      languageID: languageID
+    })
+    .then(data => res.json(data))
+    .catch(err => res.send(err));
+  }
+
+  static async getAllKnownLanguages(req, res){
+
+    models.Guide_Known_Language.findAll({
+      attributes: ['languageID'],
+      include: [{
+        model: models.Language,
+        attributes: ['language_name'],
+      }],
+      where: {
+        guideID: req.params.id
+      }
+
+    }).then(data => res.json(data))
+      .catch(err => res.send(err));
   }
   
 }

@@ -12,6 +12,7 @@ router.get("/", (req, res) => userController.getAllUsers(res));
 router.get("/:id", (req, res) => userController.getUser(req, res));
 router.delete("/:id", (req, res) => userController.deleteUser(req, res)),
 router.patch("/:id/password", (req, res) => userController.changePassword(req, res));
+router.post("/:id/rating", (req, res) => userController.rateGuide(req, res));
 
 
 
