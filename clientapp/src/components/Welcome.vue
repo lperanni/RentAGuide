@@ -31,44 +31,41 @@
 
 <script>
 
-import router from '../router';
 import axios from 'axios';
-import store from '../store';
-
+import router from '../router';
 
 export default {
-  data(){
-    return{
+  data() {
+    return {
       valid: true,
       first_name: '',
       last_name: '',
       email: '',
       password: '',
-      passwordCompare: ''
-    }
+      passwordCompare: '',
+    };
   },
   methods: {
 
-    goToLogin(){
-      router.push("/login");
+    goToLogin() {
+      router.push('/login');
     },
-    registerUser(){
-      axios.post('http://localhost:5000/api/user/auth/register' ,{
+    registerUser() {
+      axios.post('http://localhost:5000/api/user/auth/register', {
         first_name: this.first_name,
         last_name: this.last_name,
         email: this.email,
-        password: this.password
-      }).then(res => store.commmit('logIn', { email: this.email.trim(), password: this.password }))
+        password: this.password,
+      }).then(() => this.$store.commit('logIn', { email: this.email, password: this.password }))
         .catch(err => console.log(err));
-    }
+    },
 
-  }
-  
-}
+  },
+
+};
 </script>
 
 <style scoped>
-
 
 
 </style>

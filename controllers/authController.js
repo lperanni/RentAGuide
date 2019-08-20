@@ -44,4 +44,14 @@ export default class AuthController{
     req.logOut();
     res.status(200).send("Logout successfull");
   }
+
+  static async returnUserInfo(req,res){
+    models.User.findAll({
+      attributes: ['id', 'first_name', 'last_name', 'email', 'password'],
+      where: {
+        email: req.body.email
+      }
+    }).then(data => res.send(data)) 
+      .catch(err => console.log(err));
+  }
 }

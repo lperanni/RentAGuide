@@ -4,6 +4,8 @@ Figure out way to have two different local strategies for different user types (
 
 Add handling for guide_language and guide_services tables 
 
+add logger
+
 
 FRONTEND
 

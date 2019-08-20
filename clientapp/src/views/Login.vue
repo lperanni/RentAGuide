@@ -1,15 +1,16 @@
 <template>
-  <v-container class="pa-5">
+  <v-container class="pa-5 mt-5">
     <v-row>
-      <h2 class="mb-3 display-2">Login</h2>
+      <h1 class="my-5 display-2">Login</h1>
     </v-row>
      <v-form ref="form" v-model="valid" lazy-validation>
       <v-row>
         <v-text-field outlined clearable v-model="email" label="Email" required></v-text-field>
       </v-row>
       <v-row>
-        <v-text-field outlined clearable v-model="password" label="Password" type="password" required></v-text-field>
+        <v-text-field outlined clearable v-model="password" label="Password" type="password" @keyup.enter="attemptLogin" required></v-text-field>
       </v-row>
+      <p class="subtitle-1 mt-4">Forgot your <router-link to="change">password?</router-link></p>
       <v-btn color="success" class="mr-4" @click="goToRegister">Register</v-btn>
       <v-btn color="warning" class="mr-4" @click="attemptLogin">Login</v-btn>
     </v-form>
@@ -18,23 +19,20 @@
 
 <script>
 
-import router from '../router';
-import store from '../store';
-
 export default {
-  data(){
+  data() {
     return {
       email: '',
       password: '',
-    }
+    };
   },
   methods: {
-    goToRegister(){
-      router.push("/");
+    goToRegister() {
+      this.$router.push('/');
     },
-    attemptLogin(){
-      store.commit('logIn', { email: this.email.trim(), password: this.password });
-    }
-  }
-}
+    attemptLogin() {
+      this.$store.commit('logIn', { email: this.email.trim(), password: this.password });
+    },
+  },
+};
 </script>

@@ -3,37 +3,32 @@
     <Welcome></Welcome>
   </v-container>
   <v-container v-else class="mt-5">
-    Different
+    <Dashboard></Dashboard>
   </v-container>
 </template>
 
 <script>
 
-import Welcome from '../components/Welcome';
-import Dashboard from '../components/Dashboard';
-import store from '../store';
+import Welcome from '../components/Welcome.vue';
+import Dashboard from '../components/Dashboard.vue';
 
 export default {
   components: {
-   Welcome
+    Welcome, Dashboard,
   },
   computed: {
-    loggedIn(){
-      if(store.state.isLoggedIn === true){
+    loggedIn() {
+      if (this.$store.state.isLoggedIn === true) {
         return true;
-      }else{
-        return false;
       }
-    }
+      return false;
+    },
   },
-  mounted(){
-    this.loggedIn;
-  }
 };
 </script>
 
 <style scoped>
-  
+
   h1{
     text-align: center;
     font-size: 400%;

@@ -39,7 +39,7 @@ export default class UserController {
     },
     {
       where: {
-        id: Number(req.params.id)
+        email: Number(req.body.email)
       }
     }).then(() => res.sendStatus(204))
       .catch(err => res.status(409).send(err));
