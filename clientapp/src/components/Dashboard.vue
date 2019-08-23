@@ -19,48 +19,48 @@
 
 <script>
 export default {
-  data(){
-    return{
+  data() {
+    return {
       cardValues: [
-        { 
-          title: 'Order a new Tour', 
-          text: 'Book your personal Tour today and experience Splits History firsthand together with us and our wonderful guides', 
+        {
+          title: 'Order a new Tour',
+          text: 'Book your personal Tour today and experience Splits History firsthand together with us and our wonderful guides',
           btn: 'Order now',
-          link: '/order'
+          link: '/order',
         },
-        { 
-          title: 'Choose your Guide', 
+        {
+          title: 'Browse our Guides',
           text: '  Browse through our list of professional Guides with years of experience and find the one that suits you most',
           btn: 'Browse Guides',
-          link: '/order'
+          link: '/guide',
         },
-        { 
+        {
           title: 'Find your Tour',
-          text: 'Choose amongst the plethora of unique Tours that we offer and decide which programme best suits your interest', 
+          text: 'Choose amongst the plethora of unique Tours that we offer and decide which programme best suits your interest',
           btn: 'See Offers',
-          link: '/order'
+          link: '/order',
         },
-        { 
-          title: 'Contact us', 
-          text: 'Have any questions about our provided Services? We are here for you 24/7 with any information you may need.', 
+        {
+          title: 'Contact us',
+          text: 'Have any questions about our provided Services? We are here for you 24/7 with any information you may need.',
           btn: 'Contact',
-          link: '/contact'
+          link: '/contact',
         },
-        { 
-          title: 'Rate your Guides', 
+        {
+          title: 'Rate your Guides',
           text: 'Were you happy with one of our Guides were you dissappointed with the Service? All feedback is appreciated',
           btn: 'Rate',
-          link: '/order'
+          link: '/order',
         },
-        { 
+        {
           title: 'About us',
-          text: 'Interested in us? Read the story of how we became the largest provider of guided Tour services in Croatia.', 
+          text: 'Interested in us? Read the story of how we became the largest provider of guided Tour services in Croatia.',
           btn: 'Read',
-          link: '/about'
+          link: '/about',
         },
-      ]
-    }
-  }
+      ],
+    };
+  },
 
 };
 </script>

@@ -8,13 +8,13 @@
 
 <script>
 export default {
-  data(){
+  data() {
 
   },
-  mounted(){
+  mounted() {
     if (this.$store.state.isLoggedIn == false) {
-      this.$router.push("/");
+      this.$router.push('/');
     }
-  }
-}
+  },
+};
 </script>

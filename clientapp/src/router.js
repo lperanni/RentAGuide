@@ -7,6 +7,7 @@ import About from './views/About.vue';
 import ChangePassword from './views/ChangePassword.vue';
 import Order from './views/Order.vue';
 import Contact from './views/Contact.vue';
+import Browse from './views/Browse.vue';
 
 Vue.use(Router);
 
@@ -46,6 +47,12 @@ export default new Router({
       path: '/contact',
       name: 'contact',
       component: Contact,
+    },
+    {
+      path: '/guide',
+      name: 'guide',
+      component: Browse,
+      props: { item: 'guide' },
     },
   ],
 });

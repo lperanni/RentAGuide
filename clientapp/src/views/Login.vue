@@ -11,8 +11,8 @@
         <v-text-field outlined clearable v-model="password" label="Password" type="password" @keyup.enter="attemptLogin" required></v-text-field>
       </v-row>
       <p class="subtitle-1 mt-4">Forgot your <router-link to="change">password?</router-link></p>
-      <v-btn color="success" class="mr-4" @click="goToRegister">Register</v-btn>
       <v-btn color="warning" class="mr-4" @click="attemptLogin">Login</v-btn>
+      <v-btn color="success" class="mr-4" @click="goToRegister">Register</v-btn>
     </v-form>
   </v-container>
 </template>
@@ -31,7 +31,7 @@ export default {
       this.$router.push('/');
     },
     attemptLogin() {
-      this.$store.commit('logIn', { email: this.email.trim(), password: this.password });
+      this.$store.dispatch('login', { email: this.email.trim(), password: this.password });
     },
   },
 };

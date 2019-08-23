@@ -18,18 +18,19 @@
 import axios from 'axios';
 
 export default {
-  data(){
-    return{
+  data() {
+    return {
       email: '',
       newPassword: '',
-    }
+    };
   },
   methods: {
-    compareAndSend(){
+    compareAndSend() {
       axios.patch('http://localhost:5000/api/user/password', {
-        email: this.email
+        email: this.email,
+        password: this.newPassword,
       });
-    }
-  }
-}
+    },
+  },
+};
 </script>

@@ -6,7 +6,7 @@
       <v-row>
         <v-col><p>Join us Today and experience Croatia like never before</p></v-col>
       </v-row>
-    <v-form ref="form" v-model="valid" lazy-validation>
+    <v-form ref="form" lazy-validation>
       <v-row>
         <v-text-field outlined clearable v-model="first_name" label="First Name" required></v-text-field>
       </v-row>
@@ -26,6 +26,14 @@
       <v-btn color="warning" class="mr-4" @click="goToLogin">Login</v-btn>
     </v-form>
     <p class="subtitle-1 mt-4">Want to know more about <router-link to="about">us?</router-link></p>
+    <v-alert
+        v-model="show"
+        :dismissible="dismissible"
+        class="mb-4"
+        :type="type"
+        transition="slide-x-transition"
+      >Passwords do not match!
+     </v-alert>
   </v-container>
 </template>
 
@@ -43,6 +51,9 @@ export default {
       email: '',
       password: '',
       passwordCompare: '',
+      show: false,
+      dismissible: true,
+      type: 'warning',
     };
   },
   methods: {
@@ -51,13 +62,18 @@ export default {
       router.push('/login');
     },
     registerUser() {
-      axios.post('http://localhost:5000/api/user/auth/register', {
-        first_name: this.first_name,
-        last_name: this.last_name,
-        email: this.email,
-        password: this.password,
-      }).then(() => this.$store.commit('logIn', { email: this.email, password: this.password }))
-        .catch(err => console.log(err));
+
+      if(this.password != this.passwordCompare){
+        this.show = true;
+      } else {
+        axios.post('http://localhost:5000/api/user/auth/register', {
+          first_name: this.first_name,
+          last_name: this.last_name,
+          email: this.email,
+          password: this.password,
+        }).then(() => this.$store.dispatch('login', { email: this.email, password: this.password }))
+          .catch(err => console.log(err));
+      }
     },
 
   },

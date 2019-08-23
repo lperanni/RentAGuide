@@ -14,20 +14,20 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
       paragraphs: [
-        { 
-          title: 'Who are we?', 
-          text: 'We are a 25 man firm whose main focus is to provide Tourists with an easy way of getting guided Tours in all of Dalmatia.'
+        {
+          title: 'Who are we?',
+          text: 'We are a 25 man firm whose main focus is to provide Tourists with an easy way of getting guided Tours in all of Dalmatia.',
         },
-        { 
-          title: 'Where are we?', 
-          text: 'You can find us in the beautiful City of Split, Croatia where our Headquarters are situated'
+        {
+          title: 'Where are we?',
+          text: 'You can find us in the beautiful City of Split, Croatia where our Headquarters are situated',
         },
 
-      ]
-    }
-  }
-}
+      ],
+    };
+  },
+};
 </script>

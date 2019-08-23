@@ -1,7 +1,7 @@
 <template>
   <nav>
     <v-app-bar app class="blue white--text">
-      <v-app-bar-nav-icon dark @click="drawer = ! drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon dark @click="openDrawer"></v-app-bar-nav-icon>
       <v-toolbar-title ><span class="black--text bold">Rent</span> a Guide</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text dark @click="completeAuth">
@@ -10,29 +10,44 @@
       </v-btn>
     </v-app-bar>
     <v-navigation-drawer app class="primary" v-model="drawer">
-      <v-container class="text-center mt-5">
+      <v-container class="text-center py-5 blue darken-3">
         <v-avatar size="150">
           <img src="../assets/images/avatar.jpeg" class="text-lg-center" alt="a picture" @click="goToProfile">
         </v-avatar>
-        <p class="white--text mt-3 subtitle-1">{{ username }}</p>
+        <p v-if="username" class="title my-5 white--text">Welcome, {{ username }}</p>
       </v-container>
-      <v-list class="mx-2">
-        <v-list-item class="list-item" v-for="link in links" :key="link.text" router :to="link.route">
+      <v-list class="mx-2 my-5">
+        <v-list-item class="list-item" v-for="link in links" :key="link.text" router :to="link.route" :item="link.props">
           <v-list-item-action>
             <v-icon class="white--text">{{ link.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title class="white--text">
+            <v-list-item-title class="white--text title">
               {{ link.text }}
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <v-container class="my-10 blue darken-3">
+        <v-row >
+          <v-col cols="12">
+            <v-btn class="success" block @click="completeAuth">Log out</v-btn>
+          </v-col>
+           <v-col cols="12">
+            <v-btn class="orange white--text" block>Send it to me</v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-container class="mt-12">
+        <p class="grey--text caption">Rent a Guide belongs to Luciano Peranni incorporated</p>
+      </v-container>
     </v-navigation-drawer>
   </nav>
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -43,19 +58,26 @@ export default {
         { icon: 'mdi-account', text: 'Profile', route: '/profile' },
         { icon: 'mdi-contact-mail', text: 'Contact', route: '/contact' },
         { icon: 'mdi-credit-card-outline', text: 'Order Tour', route: '/order' },
+        {
+          icon: 'mdi-format-list-bulleted-square', text: 'See Guides', route: '/guide', props: 'guide',
+        },
       ],
       navButton: [
-        { icon: 'mdi-application-import', text: 'Login', method: 'logIn' },
-        { icon: 'mdi-application-export', text: 'Sign out', method: 'logOut' },
+        { icon: 'mdi-application-import', text: 'Login' },
+        { icon: 'mdi-application-export', text: 'Sign out' },
       ],
     };
   },
   methods: {
+    openDrawer() {
+      if (this.$store.state.isLoggedIn) this.drawer = !this.drawer;
+    },
     completeAuth() {
-      if (this.active == 0) {
+      if (this.active === 0) {
         this.$router.push('/login');
       } else {
-        this.$store.commit('logOut');
+        this.$store.dispatch('logout');
+        this.drawer = false;
       }
     },
     goToProfile() {
@@ -63,15 +85,14 @@ export default {
     },
   },
   computed: {
+    ...mapGetters([
+      'username',
+    ]),
     active() {
-      if (this.$store.state.isLoggedIn == true) {
+      if (this.$store.state.isLoggedIn === true) {
         return 1;
       }
       return 0;
-    },
-    username() {
-      const user = this.$store.getters.getUser;
-      return (user != null) ? user.data.first_name : "Not logged in";
     },
   },
 

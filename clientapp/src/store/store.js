@@ -2,27 +2,25 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 import router from '../router';
-import { LOG_IN, LOG_OUT } from './mutation-types';
+import { LOG_IN, LOG_OUT, LOG_IN_SUCCESS } from './mutation-types';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    isLoggedIn: false,
-    user: {},
+    isLoggedIn: !!localStorage.getItem('token'),
+    pending: false,
+    user: JSON.parse(localStorage.getItem('token')),
   },
   mutations: {
-    [LOG_IN](state, body) {
-      axios.post('http://localhost:5000/api/user/auth/login', {
-        email: body.email,
-        password: body.password,
-      })
-        .then((res) => {
-          state.isLoggedIn = true;
-          state.user = res;
-          router.push('/');
-        })
-        .catch(err => console.log(err));
+    [LOG_IN](state) {
+      state.pending = true;
+    },
+    [LOG_IN_SUCCESS](state, res) {
+      state.isLoggedIn = true;
+      state.user = { ...res.data };
+      state.pending = false;
+      router.push('/');
     },
     [LOG_OUT](state) {
       axios.delete('http://localhost:5000/api/user/auth/logout')
@@ -34,13 +32,29 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    attemptLogin(context, payload) {
-      context.commit('logIn', { payload });
+    login({ commit }, body) {
+      commit(LOG_IN);
+      axios.post('http://localhost:5000/api/user/auth/login', {
+        email: body.email,
+        password: body.password,
+      }).then((res) => {
+        const payload = JSON.stringify(res.data[0]);
+        localStorage.setItem('token', payload);
+        commit(LOG_IN_SUCCESS, res);
+      })
+        .catch(err => console.log(err));
+    },
+    logout({ commit }) {
+      localStorage.removeItem('token');
+      commit(LOG_OUT);
     },
   },
   getters: {
-    getUser(state) {
-      return state.user;
+    username(state) {
+      if (state.user) {
+        return state.user.first_name;
+      }
+      return 'User';
     },
   },
 });
