@@ -25,15 +25,12 @@ import axios from 'axios';
 export default {
   data() {
     return {
-
+     
     };
   },
   computed: {
-    user() {
-      const { id } = Object.values(this.$store.state.user)[0][0];
-      axios.get(`http://localhost:5000/api/guide/${id}`)
-        .then(res => console.log(Object.values(res)[0]))
-        .catch(err => console.log(err));
+    user(){
+      return this.$store.state.user;
     },
   },
   mounted() {

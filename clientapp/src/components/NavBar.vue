@@ -59,7 +59,7 @@ export default {
         { icon: 'mdi-contact-mail', text: 'Contact', route: '/contact' },
         { icon: 'mdi-credit-card-outline', text: 'Order Tour', route: '/order' },
         {
-          icon: 'mdi-format-list-bulleted-square', text: 'See Guides', route: '/guide', props: 'guide',
+          icon: 'mdi-format-list-bulleted-square', text: 'See Guides', route: '/guide', props: 'guides',
         },
       ],
       navButton: [
@@ -78,6 +78,7 @@ export default {
       } else {
         this.$store.dispatch('logout');
         this.drawer = false;
+        this.$router.push("/");
       }
     },
     goToProfile() {

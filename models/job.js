@@ -5,7 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     date: DataTypes.DATE,
     start_time: DataTypes.INTEGER,
     end_time: DataTypes.INTEGER,
-    serviceID: DataTypes.INTEGER
+    serviceID: DataTypes.INTEGER,
+    languageID: DataTypes.INTEGER,
+    guideID: DataTypes.INTEGER,
+    userID: DataTypes.INTEGER
   }, {});
   Job.associate = function(models) {
     Job.hasOne(models.Guide);

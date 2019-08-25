@@ -35,10 +35,10 @@ export default {
           link: '/guide',
         },
         {
-          title: 'Find your Tour',
-          text: 'Choose amongst the plethora of unique Tours that we offer and decide which programme best suits your interest',
-          btn: 'See Offers',
-          link: '/order',
+          title: 'Profile',
+          text: 'See al information on your Profile since you joined and edit information',
+          btn: 'See Profile',
+          link: '/profile',
         },
         {
           title: 'Contact us',

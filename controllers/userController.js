@@ -1,19 +1,20 @@
 import models from '../models';
 import bcrypt from 'bcrypt';
 
+
 export default class UserController {
   
   static async getAllUsers(res) {
 
     models.User.findAll({
-      attributes: ['id','first_name','last_name','email','password']
+      attributes: ['id','first_name','last_name','email','password','createdAt']
     }).then(result => res.status(200).json(result)) 
       .catch(() => res.status(404).send("No users found"))
   }
 
   static async getUser(req, res) {
     models.User.findAll({
-      attributes: ['id','first_name','last_name','email', 'password'],
+      attributes: ['id','first_name','last_name','email', 'password','createdAt'],
       where: {
         id: req.params.id
       }
@@ -30,7 +31,7 @@ export default class UserController {
         id: id
       }
     }).then(result => res.status(204).send("User deleted"))
-      .catch(() => res.sendStatus(404));
+      .catch(() => res.status(404).send());
   }
 
   static async changePassword(req, res) {
@@ -55,5 +56,15 @@ export default class UserController {
     })
     .then(() => res.status(204).send("Successfully rated"))
     .catch(err => "Error processing: " + err);
+  }
+
+  static async getAllJobsByUser(req, res){
+
+    models.Job.findAll({
+      where: {
+        userID: req.params.id
+      }
+    }).then(data => res.json(data))
+      .catch(err => console.log(err));
   }
 }

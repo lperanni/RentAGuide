@@ -12,12 +12,33 @@
       <v-col lg="8">
         <v-card elevation="10" class="pa-4">
           <v-form>
-            <v-text-field outlined clearable label="Subject"></v-text-field>
-            <v-textarea class="pa-0" outlined no-resize label="Message"></v-textarea>
-            <v-btn class="success" block>Send</v-btn>
+            <v-text-field outlined clearable label="Subject" v-model="subject"></v-text-field>
+            <v-textarea class="pa-0" outlined no-resize label="Message" v-model="message"></v-textarea>
+            <v-btn class="success" block @click="sendMessage">Send</v-btn>
           </v-form>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
+
+<script>
+import Message from '../libs/send';
+
+
+export default {
+  data(){
+    return{
+      subject: '',
+      message: '',
+      userMail: this.$store.state.user.email 
+    }
+  },
+  methods: {
+    sendMessage(){
+      const mailToSend = new Message(this.userMail, this.subject, this.message);
+      mailToSend.send();
+    },
+  }
+}
+</script>

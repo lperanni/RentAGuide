@@ -7,7 +7,7 @@ import About from './views/About.vue';
 import ChangePassword from './views/ChangePassword.vue';
 import Order from './views/Order.vue';
 import Contact from './views/Contact.vue';
-import Browse from './views/Browse.vue';
+import Browse from './views/BrowseGuides.vue';
 
 Vue.use(Router);
 

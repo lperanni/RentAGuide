@@ -3,7 +3,7 @@
     <v-row>
       <h1 class="my-5 display-2">Login</h1>
     </v-row>
-     <v-form ref="form" v-model="valid" lazy-validation>
+     <v-form ref="form" lazy-validation>
       <v-row>
         <v-text-field outlined clearable v-model="email" label="Email" required></v-text-field>
       </v-row>
