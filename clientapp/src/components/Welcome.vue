@@ -62,8 +62,7 @@ export default {
       router.push('/login');
     },
     registerUser() {
-
-      if(this.password != this.passwordCompare){
+      if (this.password != this.passwordCompare) {
         this.show = true;
       } else {
         axios.post('http://localhost:5000/api/user/auth/register', {

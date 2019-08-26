@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import { userPassport } from '../services/passports';
 import passport from 'passport';
 import models from "../models";
 

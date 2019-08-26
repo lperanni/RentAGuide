@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Job = sequelize.define('Job', {
-    location: DataTypes.STRING,
+    locationID: DataTypes.INTEGER,
     date: DataTypes.DATE,
     start_time: DataTypes.INTEGER,
     end_time: DataTypes.INTEGER,
@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     Job.hasOne(models.User);
     Job.hasOne(models.Language);
     Job.hasOne(models.Service);
+    Job.hasOne(models.Location);
   };
   return Job;
 };

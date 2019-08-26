@@ -78,7 +78,7 @@ export default {
       } else {
         this.$store.dispatch('logout');
         this.drawer = false;
-        this.$router.push("/");
+        this.$router.push('/');
       }
     },
     goToProfile() {

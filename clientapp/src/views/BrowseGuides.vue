@@ -52,11 +52,11 @@ export default {
   },
   mounted() {
     axios.get(`http://localhost:5000/api/${this.item}`)
-    .then(response => this.items = response.data)
-    .catch(err => {
-      alert('Not Found');
-      this.$router.push("/")
-    })
+      .then(response => this.items = response.data)
+      .catch((err) => {
+        alert('Not Found');
+        this.$router.push('/');
+      });
   },
 
 };

@@ -4,7 +4,7 @@
         <p class="subtitle-1 grey--text">Dashboard</p>
       </v-row>
       <v-row>
-        <v-col lg="4" sm="12" xs="12" v-for="card in cardValues" :key="card.title">
+        <v-col lg="4" sm="12" v-for="card in cardValues" :key="card.title">
           <v-card min-height="250" min-width="200" class="pa-5" hover>
             <v-card-title class="mb-3">{{ card.title }}</v-card-title>
             <v-card-text>{{ card.text }}</v-card-text>

@@ -37,8 +37,8 @@ export default class GuideController {
 
   static async registerGuide(req, res){
 
-    const { first_name, last_name, email, password, phone_number} = req.body;
-      
+    const { first_name, last_name, email, password, phone_number, languages, services } = req.body;
+
       const hash = await bcrypt.hash(password, 10)
       models.Guide.create({
         first_name: first_name, 
@@ -47,8 +47,30 @@ export default class GuideController {
         phone_number: phone_number,
         joined: new Date(), 
         password: hash
-      }).then(() => res.sendStatus(204))
-        .catch(err => res.status(404).send(err))
+      }).then(result => {
+
+        for (let i = 0; i < languages.length; i++) {
+
+          let lang = languages[i];
+
+          models.Guide_Known_Language.create({
+            guideID: result.dataValues.id,
+            languageID: lang.id
+          })
+        }
+
+        for (let j = 0; j < services.length; j++) {
+
+          let service = services[j];
+          models.Guide_Service.create({
+            guideID: result.dataValues.id,
+            serviceID: service.id,
+            price: service.price
+          })
+        }
+        res.sendStatus(204);
+      })
+      .catch(err => console.log(err));
   }
 
   static async getGuideById(req, res){
@@ -177,7 +199,7 @@ export default class GuideController {
       attributes: ['languageID'],
       include: [{
         model: models.Language,
-        attributes: ['language_name'],
+        attributes: ['language_name','id'],
       }],
       where: {
         guideID: req.params.id

@@ -12,7 +12,7 @@ export default class Message {
       email: this.sender,
       subject: this.subject,
       message: this.message,
-    }).then(() => alert('Message sent'))
+    }).then(() => console.log('Message sent'))
       .catch(err => console.log(err));
   }
 }

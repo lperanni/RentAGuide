@@ -25,11 +25,11 @@ import axios from 'axios';
 export default {
   data() {
     return {
-     
+
     };
   },
   computed: {
-    user(){
+    user() {
       return this.$store.state.user;
     },
   },

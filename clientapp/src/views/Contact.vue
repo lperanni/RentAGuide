@@ -27,18 +27,18 @@ import Message from '../libs/send';
 
 
 export default {
-  data(){
-    return{
+  data() {
+    return {
       subject: '',
       message: '',
-      userMail: this.$store.state.user.email 
-    }
+      userMail: this.$store.state.user.email,
+    };
   },
   methods: {
-    sendMessage(){
+    sendMessage() {
       const mailToSend = new Message(this.userMail, this.subject, this.message);
       mailToSend.send();
     },
-  }
-}
+  },
+};
 </script>
