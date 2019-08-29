@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import { userPassport } from '../services/passports';
 import passport from 'passport';
 import models from "../models";
 
@@ -29,13 +28,14 @@ export default class AuthController{
   
   static async registerUser(req, res){
 
-    const { first_name, last_name, email, password} = req.body;
+    const { first_name, last_name, email, password, admin} = req.body;
       
       const hash = await bcrypt.hash(password, 10)
       models.User.create({
         first_name: first_name, 
         last_name: last_name, 
-        email: email, 
+        email: email,
+        admin: admin, 
         password: hash
       }).then((data) => res.send(data))
         .catch(err => res.status(404).send(err))
@@ -48,7 +48,7 @@ export default class AuthController{
 
   static async returnUserInfo(req,res){
     models.User.findAll({
-      attributes: ['id', 'first_name', 'last_name', 'email', 'password'],
+      attributes: ['id', 'first_name', 'last_name', 'email', 'password', 'admin'],
       where: {
         email: req.body.email
       }

@@ -1,13 +1,16 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import Profile from './views/Profile.vue';
 import Login from './views/Login.vue';
 import About from './views/About.vue';
 import ChangePassword from './views/ChangePassword.vue';
 import Order from './views/Order.vue';
 import Contact from './views/Contact.vue';
 import Browse from './views/BrowseGuides.vue';
+import Locations from './views/Locations.vue';
+import Admin from './views/Admin/Admin.vue';
+import AdminMenu from './views/Admin/AdminMenu.vue';
+
 
 Vue.use(Router);
 
@@ -19,9 +22,17 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/profile',
-      name: 'profile',
-      component: Profile,
+      path: '/admin',
+      name: 'admin',
+      component: Admin,
+      children: [
+        { path: 'menu', name: 'admin_menu', component: AdminMenu },
+      ],
+    },
+    {
+      path: '/locations',
+      name: 'locations',
+      component: Locations,
     },
     {
       path: '/login',

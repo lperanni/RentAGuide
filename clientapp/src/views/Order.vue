@@ -31,7 +31,7 @@
                   <v-select outlined label="Begin" :items="hours" v-model="start_time" required></v-select>
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field outlined clearable label="Email" required></v-text-field>
+                  <v-select outlined clearable label="Service" v-model="serviceName" :items="serviceNames" :disabled="guideChosen" required></v-select>
                 </v-col>
             </v-row>
           </v-col>
@@ -59,8 +59,14 @@ export default {
       guides: [],
       possibleLocations: [],
       languages: [],
-      hours: ['9','10','11','12','13','14','15','16','17','18','19','20','21','22'],
+      services: [],
+      hours: ['9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22'],
     };
+  },
+  methods: {
+    checkAvailability(){
+      
+    }
   },
   computed: {
     userID() {
@@ -88,15 +94,22 @@ export default {
     languageNames() {
       return this.languages.map(lang => lang.Language.language_name);
     },
-    end_time(){
+    serviceNames() {
+      return this.services.map(serv => serv.Service.service_name);
+    },
+    end_time() {
       return Number(this.start_time) + 2;
-    }
+    },
   },
   watch: {
     guideID() {
       axios.get(`http://localhost:5000/api/guide/${this.guideID}/language`)
         .then(response => this.languages = response.data);
+
+      axios.get(`http://localhost:5000/api/guide/${this.guideID}/service`)
+        .then(response => this.services = response.data);
     },
+
   },
   created() {
     axios.get('http://localhost:5000/api/guide')

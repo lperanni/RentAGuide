@@ -12,7 +12,7 @@
     <v-navigation-drawer app class="primary" v-model="drawer">
       <v-container class="text-center py-5 blue darken-3">
         <v-avatar size="150">
-          <img src="../assets/images/avatar.jpeg" class="text-lg-center" alt="a picture" @click="goToProfile">
+          <img src="../assets/images/avatar.jpeg" class="text-lg-center" alt="a picture">
         </v-avatar>
         <p v-if="username" class="title my-5 white--text">Welcome, {{ username }}</p>
       </v-container>
@@ -34,7 +34,7 @@
             <v-btn class="success" block @click="completeAuth">Log out</v-btn>
           </v-col>
            <v-col cols="12">
-            <v-btn class="orange white--text" block>Send it to me</v-btn>
+            <v-btn class="orange white--text" block>Experimental</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -55,7 +55,7 @@ export default {
       drawer: false,
       links: [
         { icon: 'mdi-view-dashboard', text: 'Home', route: '/' },
-        { icon: 'mdi-account', text: 'Profile', route: '/profile' },
+        { icon: 'mdi-city', text: 'Locations', route: '/locations' },
         { icon: 'mdi-contact-mail', text: 'Contact', route: '/contact' },
         { icon: 'mdi-credit-card-outline', text: 'Order Tour', route: '/order' },
         {

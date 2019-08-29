@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import session from 'express-session';
-import { userPassport } from '../../services/passports';
 import passport from 'passport';
 import check from '../../services/authenticationCheck';
 import authController from '../../controllers/authController';

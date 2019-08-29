@@ -1,12 +1,10 @@
 BACKEND
 
-Figure out way to have two different local strategies for different user types (user and guide)
-
-Add handling for guide_language and guide_services tables 
-
-add logger
+  check guide availability on job request
 
 
 FRONTEND
 
-everything
+  admin route
+  service browser
+  image gallery issues

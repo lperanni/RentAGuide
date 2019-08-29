@@ -4,31 +4,27 @@
         <v-col cols="12"><p class="subtitle-1 grey--text">{{ this.item.charAt(0).toUpperCase() + this.item.slice(1) }}</p></v-col>
     </v-row>
     <v-row>
-      <v-simple-table
-        :dense="dense"
-        :fixed-header="fixedHeader"
-        :height="height"
-        class="table"
+      <v-col cols="12">
+        <v-text-field
+            v-model="search"
+            append-icon="mdi-search"
+            label="Search"
+            single-line
+            hide-details
+            outlined
+            clearable
+          ></v-text-field>
+      </v-col>
+      <v-col cols="12">
+         <v-data-table
+        :headers="headers"
+        :items="items"
+        :items-per-page="10"
+        :search="search"
+        class="elevation-1"
       >
-        <thead>
-          <tr>
-            <th class="text-left">First Name</th>
-            <th class="text-left">Last Name</th>
-            <th class="text-left">Email</th>
-            <th class="text-left">Phone Number</th>
-            <th class="text-left">Joined</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in items" :key="item.id">
-            <td>{{ item.first_name }}</td>
-            <td>{{ item.last_name }}</td>
-            <td>{{ item.email }}</td>
-            <td>{{ item.phone_number }}</td>
-            <td>{{ item.joined }}</td>
-          </tr>
-        </tbody>
-      </v-simple-table>
+      </v-data-table>
+      </v-col>
 
     </v-row>
   </v-container>
@@ -43,8 +39,21 @@ export default {
   props: ['item'],
   data() {
     return {
-      items: {},
-      height: 2500,
+      search: '',
+      items: [],
+      height: 900,
+      headers: [
+        {
+          text: 'First Name',
+          align: 'left',
+          sortable: false,
+          value: 'first_name',
+        },
+        { text: 'Last Name', value: 'last_name' },
+        { text: 'Email', value: 'email' },
+        { text: 'Phone number', value: 'phone_number' },
+        { text: 'Joined', value: 'joined' },
+      ],
     };
   },
   methods: {
@@ -61,9 +70,3 @@ export default {
 
 };
 </script>
-
-<style scoped>
-  .table{
-    font-size: 450%;
-  }
-</style>

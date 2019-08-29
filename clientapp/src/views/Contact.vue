@@ -9,11 +9,11 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col lg="8">
+      <v-col lg="12">
         <v-card elevation="10" class="pa-4">
           <v-form>
             <v-text-field outlined clearable label="Subject" v-model="subject"></v-text-field>
-            <v-textarea class="pa-0" outlined no-resize label="Message" v-model="message"></v-textarea>
+            <v-textarea class="pa-0" outlined no-resize height="350" label="Message" v-model="message"></v-textarea>
             <v-btn class="success" block @click="sendMessage">Send</v-btn>
           </v-form>
         </v-card>

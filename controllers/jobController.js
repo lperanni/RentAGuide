@@ -138,4 +138,8 @@ export default class JobController {
       .catch(err => res.status(404).send("No jobs with that guide found\n" + err));
   }
 
+  static async checkGuideAvailability(req, res) {
+    
+  }
+
 }

@@ -1,28 +1,6 @@
-import models from "../models";
+import models from '../models';
 import bcrypt from 'bcrypt';
-import passport from 'passport';
 
-import { initializePassport } from '../services/passport-config';
-
-initializePassport(
-  passport,
-  email => models.Guide.findAll({
-    limit: 1,
-    attributes: ['id', 'first_name', 'last_name', 'email', 'password', 'phone_number'],
-    where: {
-      email: email
-    },
-    plain: true
-  }).then(result => result.get()),
-  id => models.Guide.findAll({
-    limit: 1,
-    attributes: ['id', 'first_name', 'last_name', 'email', 'password', 'phone_number'],
-    where: {
-      id: id
-    },
-    plain: true,
-  }).then(result => result.get())
-);
 
 export default class GuideController {
   
@@ -45,7 +23,7 @@ export default class GuideController {
         last_name: last_name, 
         email: email, 
         phone_number: phone_number,
-        joined: new Date(), 
+        joined: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()), 
         password: hash
       }).then(result => {
 

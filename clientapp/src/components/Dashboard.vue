@@ -35,10 +35,10 @@ export default {
           link: '/guide',
         },
         {
-          title: 'Profile',
-          text: 'See al information on your Profile since you joined and edit information',
-          btn: 'See Profile',
-          link: '/profile',
+          title: 'Tour Locations',
+          text: 'Look at our gallery of Splits sites and have a taste of what you could experience live with one of our guides',
+          btn: 'See Locations',
+          link: '/locations',
         },
         {
           title: 'Contact us',
@@ -47,10 +47,10 @@ export default {
           link: '/contact',
         },
         {
-          title: 'Rate your Guides',
-          text: 'Were you happy with one of our Guides were you dissappointed with the Service? All feedback is appreciated',
-          btn: 'Rate',
-          link: '/order',
+          title: 'Look through our Services',
+          text: 'Have a look through our comprehensive list of Services and decide which one fits your needs most',
+          btn: 'Browse Services',
+          link: '/guide',
         },
         {
           title: 'About us',
