@@ -20,7 +20,7 @@
         <v-text-field outlined clearable v-model="password" label="Password" required type="password"></v-text-field>
       </v-row>
       <v-row>
-        <v-text-field outlined clearable v-model="passwordCompare" label="Enter Password again" required></v-text-field>
+        <v-text-field outlined clearable v-model="passwordCompare" type="password" label="Enter Password again" required></v-text-field>
       </v-row>
       <v-btn color="success" class="mr-4" :disabled="!valid" @click="registerUser">Register</v-btn>
       <v-btn color="warning" class="mr-4" @click="goToLogin">Login</v-btn>
@@ -65,7 +65,7 @@ export default {
       if (this.password != this.passwordCompare) {
         this.show = true;
       } else {
-        axios.post('http://localhost:5000/api/user/auth/register', {
+        axios.post(`${process.env.VUE_APP_BASE_URL}/user/auth/register`, {
           first_name: this.first_name,
           last_name: this.last_name,
           email: this.email,

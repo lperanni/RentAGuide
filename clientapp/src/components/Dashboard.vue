@@ -50,7 +50,7 @@ export default {
           title: 'Look through our Services',
           text: 'Have a look through our comprehensive list of Services and decide which one fits your needs most',
           btn: 'Browse Services',
-          link: '/guide',
+          link: '/service',
         },
         {
           title: 'About us',

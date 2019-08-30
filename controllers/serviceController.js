@@ -18,14 +18,14 @@ export default class ServiceController {
 
   static async getAllServices(req, res){
     models.Service.findAll({
-      attributes: ['service_name', 'description']
+      attributes: ['id','service_name', 'description']
     }).then(data => res.json(data))
       .catch(err => res.status(404).send("No services found\n" + err));
   }
 
   static async getServiceById(req,res){
     models.Service.findAll({
-      attributes: ['service_name','description'],
+      attributes: ['id','service_name','description'],
       where: {
         id: req.params.id
       }

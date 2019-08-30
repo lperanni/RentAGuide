@@ -18,12 +18,12 @@ export default new Vuex.Store({
     },
     [LOG_IN_SUCCESS](state, res) {
       state.isLoggedIn = true;
-      state.user = { ...res.data };
+      state.user = { ...res.data[0] };
       state.pending = false;
       router.push('/');
     },
     [LOG_OUT](state) {
-      axios.delete('http://localhost:5000/api/user/auth/logout')
+      axios.delete(`${process.env.VUE_APP_BASE_URL}/user/auth/logout`)
         .then(() => {
           console.log('Successfully logged out');
           state.isLoggedIn = false;
@@ -34,7 +34,7 @@ export default new Vuex.Store({
   actions: {
     login({ commit }, body) {
       commit(LOG_IN);
-      axios.post('http://localhost:5000/api/user/auth/login', {
+      axios.post(`${process.env.VUE_APP_BASE_URL}/user/auth/login`, {
         email: body.email,
         password: body.password,
       }).then((res) => {

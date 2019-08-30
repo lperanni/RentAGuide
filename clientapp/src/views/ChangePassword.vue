@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     compareAndSend() {
-      axios.patch('http://localhost:5000/api/user/password', {
+      axios.patch(`${process.env.VUE_APP_BASE_URL}/user/password`, {
         email: this.email,
         password: this.newPassword,
       });

@@ -8,7 +8,7 @@ export default class Message {
   }
 
   send() {
-    axios.post('http://localhost:5000/api/util/send', {
+    axios.post(`${process.env.VUE_APP_BASE_URL}/util/send`, {
       email: this.sender,
       subject: this.subject,
       message: this.message,

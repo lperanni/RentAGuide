@@ -8,10 +8,11 @@
         <v-carousel-item 
           v-for="location in locations"
           :key="location.id"
-          :src="'../assets/images/locations/' + location.img_name"
+          :src="require(`../assets/images/locations/${location.img_name}`)"
           reverse-transition="fade-transition"
           transition="fade-transition"
         >
+        <h3 class="white--text display-1 mt-4 ml-3">{{ location.location_name }}</h3>
         </v-carousel-item>
       </v-carousel>
     </v-row>
@@ -28,7 +29,7 @@ export default {
     };
   },
   mounted() {
-    axios.get('http://localhost:5000/api/location')
+    axios.get(`${process.env.VUE_APP_BASE_URL}/location`)
       .then(response => this.locations = response.data)
       .catch(err => console.log(err));
   },

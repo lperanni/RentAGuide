@@ -10,6 +10,8 @@ import Browse from './views/BrowseGuides.vue';
 import Locations from './views/Locations.vue';
 import Admin from './views/Admin/Admin.vue';
 import AdminMenu from './views/Admin/AdminMenu.vue';
+import Service from './views/Services.vue';
+
 
 
 Vue.use(Router);
@@ -58,6 +60,11 @@ export default new Router({
       path: '/contact',
       name: 'contact',
       component: Contact,
+    },
+    {
+      path: '/service',
+      name: 'service',
+      component: Service,
     },
     {
       path: '/guide',

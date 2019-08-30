@@ -12,20 +12,20 @@
                 <v-date-picker v-model="date" block></v-date-picker>
               </v-col>
               <v-col cols="12">
-                <v-btn class="success" width="290">Send</v-btn>
+                <v-btn class="success" width="290" @click="sendOrder">Send</v-btn>
               </v-col>
             </v-row>
           </v-col>
             <v-col lg="8" md="12">
               <v-row>
                 <v-col cols="12">
-                  <v-select outlined clearable label="Location" v-model="location" :items="locationNames"></v-select>
+                  <v-select outlined clearable label="Location" v-model="locationName" :items="locationNames"></v-select>
                 </v-col>
                 <v-col cols="12">
                   <v-select outlined clearable label="Guides" v-model="guideName" :items="guideNames"></v-select>
                 </v-col>
                 <v-col cols="12">
-                  <v-select outlined clearable label="Language" :items="languageNames" :disabled="guideChosen"></v-select>
+                  <v-select outlined clearable label="Language" :items="languageNames" v-model="languageName" :disabled="guideChosen"></v-select>
                 </v-col>
                 <v-col cols="12">
                   <v-select outlined label="Begin" :items="hours" v-model="start_time" required></v-select>
@@ -36,6 +36,14 @@
             </v-row>
           </v-col>
         </v-row>
+        <v-alert type="info" v-model="show">
+          {{ 
+            serviceName? 
+              this.services.find(
+                service => 
+                  service.Service.service_name === serviceName).price + ' HRK': '' 
+          }}
+        </v-alert> 
       </v-form>
     </v-row>
   </v-container>
@@ -52,20 +60,37 @@ export default {
     return {
       date: null,
       start_time: '',
-      languageID: '',
-      serviceID: '',
-      location: '',
-      guideName: null,
+      languageName: '',
+      serviceName: '',
+      locationName: '',
+      guideName: '',
       guides: [],
       possibleLocations: [],
       languages: [],
       services: [],
+      show: true,
       hours: ['9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22'],
     };
   },
+
+  //{ date, end_time, guideID, languageID, locationID, serviceID, start_time, userID }
+  
   methods: {
-    checkAvailability(){
-      
+    sendOrder(){
+
+      axios.post(`${process.env.VUE_APP_BASE_URL}/job`, {
+        date: this.date,
+        end_time: this.end_time,
+        guideID: this.guideID,
+        languageID: this.languageID,
+        locationID: this.locationID,
+        serviceID: this.serviceID,
+        start_time: this.start_time,
+        userID: this.$store.state.user.id
+      }).then(() => {
+        this.$router.push("/");
+        alert("Guide reservation successful. Our guide will call you on the day before");
+      })
     }
   },
   computed: {
@@ -90,6 +115,28 @@ export default {
         return Object.values(guide)[0];
       }
       return null;
+    },
+    languageID(){
+      if(this.languageName) {
+        const lang = this.languages.find(lang => lang.Language.language_name === this.languageName);
+        return Object.values(lang)[0];
+      }
+      return null;
+    },
+    locationID(){
+      if(this.locationName) {
+        const location = this.possibleLocations.find(location => location.location_name === this.locationName);
+        return Object.values(location)[0];
+      }
+      return null;
+    },
+    serviceID(){
+      if(this.serviceName) {
+        const service = this.services.find(service => service.Service.service_name === this.serviceName);
+        return Object.values(service)[0];
+      }
+      return null;
+
     },
     languageNames() {
       return this.languages.map(lang => lang.Language.language_name);

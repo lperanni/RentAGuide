@@ -66,14 +66,14 @@ export default class JobController {
 
   static async postJob(req, res) {
 
-    const { date, end_time, guideID, languageID, location, serviceID, start_time, userID } = req.body;
+    const { date, end_time, guideID, languageID, locationID, serviceID, start_time, userID } = req.body;
 
     models.Job.create({
       date: date,
       end_time: end_time,
       guideID: guideID,
       languageID: languageID,
-      location: location,
+      locationID: locationID,
       serviceID: serviceID,
       start_time: start_time,
       userID: userID

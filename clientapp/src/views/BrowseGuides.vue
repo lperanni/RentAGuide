@@ -60,7 +60,7 @@ export default {
 
   },
   mounted() {
-    axios.get(`http://localhost:5000/api/${this.item}`)
+    axios.get(`${process.env.VUE_APP_BASE_URL}/${this.item}`)
       .then(response => this.items = response.data)
       .catch((err) => {
         alert('Not Found');
