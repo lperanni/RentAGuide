@@ -16,14 +16,24 @@
           ></v-text-field>
       </v-col>
       <v-col cols="12">
-         <v-data-table
-        :headers="headers"
-        :items="items"
-        :items-per-page="10"
-        :search="search"
-        class="elevation-1"
-      >
-      </v-data-table>
+         <v-simple-table>
+           <thead>
+            <tr>
+              <th class="text-left">Name</th>
+              <th class="text-left">Email</th>
+              <th class="text-left">Joined</th>
+              <th class="text-left">Phone Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in items" :key="item.id">
+              <td>{{ item.first_name + " " + item.last_name }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.joined }}</td>
+              <td>{{ item.phone_number }}</td>
+            </tr>
+          </tbody>
+        </v-simple-table>
       </v-col>
 
     </v-row>

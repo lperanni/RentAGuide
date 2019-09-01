@@ -5,12 +5,12 @@ export default class ServiceController {
 
   static async postService(req, res){
 
-    const { serviceName, description } = req.body;
+    const { service_name, description } = req.body;
 
     console.log("Desc:" + description);
 
     models.Service.create({
-      service_name: serviceName,
+      service_name: service_name,
       description: description
     }).then(() => res.sendStatus(204))
       .catch(err => res.status(404).send(err))

@@ -93,7 +93,7 @@ export default class GuideController {
   static async deleteGuide(req,res){
     models.Guide.destroy({
       where: {
-        id: Number(req.params.id)
+        id: req.params.id
       }
     }).then(() => res.sendStatus(204))
       .catch(err => res.status(404).send(err));

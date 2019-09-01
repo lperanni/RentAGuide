@@ -11,6 +11,8 @@ import Locations from './views/Locations.vue';
 import Admin from './views/Admin/Admin.vue';
 import AdminMenu from './views/Admin/AdminMenu.vue';
 import AdminGuide from './views/Admin/AdminGuide.vue';
+import AdminFire from './views/Admin/AdminFire.vue';
+import AdminService from './views/Admin/AdminService.vue';
 import Service from './views/Services.vue';
 
 
@@ -31,6 +33,8 @@ export default new Router({
 
         { path: 'menu', name: 'admin_menu', component: AdminMenu },
         { path: 'guide', name: 'admin_guide', component: AdminGuide },
+        { path: 'fire', name: 'admin_fire', component: AdminFire},
+        { path: 'service', name: 'admin_service', component: AdminService},
       ],
     },
     {

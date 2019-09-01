@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mt-5 pa-7">
+  <v-container class="mt-5 px-7">
     <v-row class="pa-5">
       <p class="subtitle-1 grey--text">Admin Menu</p>
     </v-row>
@@ -27,6 +27,18 @@ export default {
           text: 'Menu for registering new guides',
           btn: 'Enter info',
           link: '/admin/guide'
+        },
+        {
+          title: 'Fire Guide',
+          text: 'Menu for firing bad guides',
+          btn: 'Do it',
+          link: '/admin/fire'
+        },
+        {
+          title: 'Add Service',
+          text: 'Menu for adding new Services',
+          btn: 'Add',
+          link: '/admin/service'
         },
       ]
     }

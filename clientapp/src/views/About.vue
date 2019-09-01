@@ -1,20 +1,20 @@
 <template>
-  <v-container class="mt-5 px-4">
+  <v-container class="mt-5 pa-7">
       <v-row class="mb-6">
         <v-col cols="12"><p class="subtitle-1 grey--text">About</p></v-col>
       </v-row>
       <v-row>
-        <v-col cols="6">
+        <v-col lg="6" sm=12>
           <v-row v-for="p in paragraphs" :key="p.title">
-            <v-col cols="6">
+            <v-col cols=12>
               <h2 class="display-1">{{ p.title }}</h2>
             </v-col>
-            <v-col cols="6">
+            <v-col cols=12>
               <p class="subtitle-1">{{ p.text }}</p>
             </v-col>
           </v-row>
         </v-col>
-        <v-col cols="6">
+        <v-col lg="6" sm=12>
           <v-img src="../assets/images/company.jpeg" height="400"></v-img>
         </v-col>
       </v-row>

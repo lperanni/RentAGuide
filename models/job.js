@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     userID: DataTypes.INTEGER
   }, {});
   Job.associate = function(models) {
-    Job.hasOne(models.Guide);
-    Job.hasOne(models.User);
-    Job.hasOne(models.Language);
-    Job.hasOne(models.Service);
-    Job.hasOne(models.Location);
+    Job.hasMany(models.Guide, { onDelete: 'cascade' });
+    Job.hasMany(models.User);
+    Job.hasMany(models.Language);
+    Job.hasMany(models.Service);
+    Job.hasMany(models.Location);
   };
   return Job;
 };

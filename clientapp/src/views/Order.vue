@@ -9,30 +9,30 @@
           <v-col lg="4" sm="12">
             <v-row>
               <v-col lg="12">
-                <v-date-picker v-model="date" block></v-date-picker>
+                <v-date-picker v-model="date" block ></v-date-picker>
               </v-col>
               <v-col cols="12">
                 <v-btn class="success" width="290" @click="sendOrder">Send</v-btn>
               </v-col>
             </v-row>
           </v-col>
-            <v-col lg="8" md="12">
-              <v-row>
-                <v-col cols="12">
-                  <v-select outlined clearable label="Location" v-model="locationName" :items="locationNames"></v-select>
-                </v-col>
-                <v-col cols="12">
-                  <v-select outlined clearable label="Guides" v-model="guideName" :items="guideNames"></v-select>
-                </v-col>
-                <v-col cols="12">
-                  <v-select outlined clearable label="Language" :items="languageNames" v-model="languageName" :disabled="guideChosen"></v-select>
-                </v-col>
-                <v-col cols="12">
-                  <v-select outlined label="Begin" :items="hours" v-model="start_time" required></v-select>
-                </v-col>
-                <v-col cols="12">
-                  <v-select outlined clearable label="Service" v-model="serviceName" :items="serviceNames" :disabled="guideChosen" required></v-select>
-                </v-col>
+          <v-col lg="8" md="12">
+            <v-row>
+              <v-col cols="12">
+                <v-select outlined clearable label="Location" v-model="locationName" :items="locationNames"></v-select>
+              </v-col>
+              <v-col cols="12">
+                <v-select outlined clearable label="Guides" v-model="guideName" :items="guideNames"></v-select>
+              </v-col>
+              <v-col cols="12">
+                <v-select outlined clearable label="Language" :items="languageNames" v-model="languageName" :disabled="guideChosen"></v-select>
+              </v-col>
+              <v-col cols="12">
+                <v-select outlined label="Begin" :items="hours" v-model="start_time" required></v-select>
+              </v-col>
+              <v-col cols="12">
+                <v-select outlined clearable label="Service" v-model="serviceName" :items="serviceNames" :disabled="guideChosen" required></v-select>
+              </v-col>
             </v-row>
           </v-col>
         </v-row>

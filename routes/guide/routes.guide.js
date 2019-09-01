@@ -18,7 +18,7 @@ router.patch("/:id", (req, res) => guideController.updateGuideInfo(req,res));
 
 router.patch("/:id/password", (req,res) => guideController.changePassword(req,res));
 
-router.delete("/:id", (req,res) => guideController.deleteGuide(req,res));
+router.delete("/:id", (req,res) => guideController.deleteGuide(req, res));
 
 router.get("/:id/ratings", (req, res) => guideController.getAllRatings(req, res));
 
