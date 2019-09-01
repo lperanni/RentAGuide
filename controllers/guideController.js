@@ -1,5 +1,5 @@
 import models from '../models';
-import bcrypt from 'bcrypt';
+
 
 
 export default class GuideController {
@@ -15,16 +15,14 @@ export default class GuideController {
 
   static async registerGuide(req, res){
 
-    const { first_name, last_name, email, password, phone_number, languages, services } = req.body;
+    const { first_name, last_name, email, phone_number, languages, services } = req.body;
 
-      const hash = await bcrypt.hash(password, 10)
       models.Guide.create({
         first_name: first_name, 
         last_name: last_name, 
         email: email, 
         phone_number: phone_number,
-        joined: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()), 
-        password: hash
+        joined: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate())
       }).then(result => {
 
         for (let i = 0; i < languages.length; i++) {
@@ -43,7 +41,7 @@ export default class GuideController {
           models.Guide_Service.create({
             guideID: result.dataValues.id,
             serviceID: service.id,
-            price: service.price
+            price: 500
           })
         }
         res.sendStatus(204);

@@ -34,7 +34,7 @@
             <v-btn class="success" block @click="completeAuth">Log out</v-btn>
           </v-col>
            <v-col cols="12">
-            <v-btn class="orange white--text" block>Experimental</v-btn>
+            <v-btn class="orange white--text" block @click="$router.push('/admin/menu')" v-show="isAdmin">Admin</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -95,6 +95,12 @@ export default {
       }
       return 0;
     },
+    isAdmin(){
+      if(this.$store.state.user.admin === true){
+        return true;
+      }
+      return false;
+    }
   },
 
 };

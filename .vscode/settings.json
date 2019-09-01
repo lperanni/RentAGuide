@@ -11,7 +11,6 @@
       "username": "postgres"
     },
     {
-      "askForPassword": true,
       "connectionTimeout": 30,
       "database": "rentaguide",
       "dialect": "PostgreSQL",

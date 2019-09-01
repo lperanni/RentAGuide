@@ -1,5 +1,5 @@
 <template>
- <v-container class="mt-5">
+ <v-container class="mt-5 pa-7">
   <v-row>
     <p class="subtitle-1 grey--text">Add Guide</p>
   </v-row>
@@ -31,7 +31,7 @@
                 v-model="selectLang"
                 :key="language.id" 
                 :label="language.language_name" 
-                :value="language.id" 
+                :value="language" 
                 >
               </v-checkbox>
             </v-row>
@@ -44,13 +44,13 @@
                 v-model="selectServ"
                 :key="service.id" 
                 :label="service.service_name" 
-                :value="service.id" 
+                :value="service" 
                 >
               </v-checkbox>
             </v-row>
         </v-col>
       </v-row>
-      <v-btn color="success" class="mr-4" block @click="registerGuide">Save</v-btn>
+      <v-btn color="success" class="mr-4" @click="registerGuide">Save</v-btn>
     </v-form>
    </v-col>
   </v-row>
@@ -76,6 +76,20 @@ export default {
     }
   },
   methods: {
+
+    registerGuide(){
+      axios.post(`${process.env.VUE_APP_BASE_URL}/guide`, {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        phone_number: this.phone_number,
+        languages: this.selectLang,
+        services: this.selectServ
+      }).then(() => {
+        alert("Guide info saved successfully");
+        this.$router.push('/admin/menu')
+      })
+    }
 
   },
   created(){

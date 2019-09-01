@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mt-5">
+  <v-container class="mt-5 pa-7">
     <v-row class="pa-5">
       <p class="subtitle-1 grey--text">Admin Menu</p>
     </v-row>
@@ -26,18 +26,6 @@ export default {
           title: 'Add Guide',
           text: 'Menu for registering new guides',
           btn: 'Enter info',
-          link: '/admin/guide'
-        },
-        {
-          title: 'Edit Guides',
-          text: 'Menu for editing guide data',
-          btn: 'Update info',
-          link: '/admin/guide'
-        },
-        {
-          title: 'Register Admin',
-          text: 'Assign admin status to user',
-          btn: 'Set Admins',
           link: '/admin/guide'
         },
       ]
