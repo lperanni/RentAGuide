@@ -10,8 +10,9 @@ import Browse from './views/BrowseGuides.vue';
 import Locations from './views/Locations.vue';
 import Admin from './views/Admin/Admin.vue';
 import AdminMenu from './views/Admin/AdminMenu.vue';
+import AdminGuide from './views/Admin/AdminGuide.vue';
+import AdminEdit from './views/Admin/AdminEdit.vue';
 import Service from './views/Services.vue';
-
 
 
 Vue.use(Router);
@@ -28,7 +29,10 @@ export default new Router({
       name: 'admin',
       component: Admin,
       children: [
+
         { path: 'menu', name: 'admin_menu', component: AdminMenu },
+        { path: 'guide', name: 'admin_guide', component: AdminGuide },
+        { path: 'edit', name: 'admin_edit', component: AdminEdit },
       ],
     },
     {
