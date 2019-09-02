@@ -7,20 +7,21 @@ Users can sign up and order tour guides in locations the fictional App company p
 ```
 1. Node.js (npm)
 2. Sequelize-cli (npm install -g sequelize-cli)
+3. Postgres
 ```
 ## Installation
 
 To install the app, open a Terminal and clone into it using the git clone command. After that cd into the App directory and run npm install. Cd into the clientapp directory and again run npm install.
-Go back to the root app directory and using the sequelize cli run 
+Go back to the root app directory. Here you will find a config folder with a `config.json` file in it. Here under the development settings, enter your postgres credentials (user and password), and using the sequelize cli run 
 the following commands in order
 
 ```
 1. sequelize db:create
 2. sequelize db:migrate
-3. sequelize db:seed
+3. sequelize db:seed:all
 ```
 
-To get access to the admin account, go to ./clientapp and run the command
+To get access to the admin account, go to the App root and run the following command while the server is running
 
 ```
 node initAdmin.js

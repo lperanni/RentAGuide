@@ -19,34 +19,34 @@
 
 <script>
 export default {
-  data(){
-    return{
+  data() {
+    return {
       menuItems: [
         {
           title: 'Add Guide',
           text: 'Menu for registering new guides',
           btn: 'Enter info',
-          link: '/admin/guide'
+          link: '/admin/guide',
         },
         {
           title: 'Fire Guide',
           text: 'Menu for firing bad guides',
           btn: 'Do it',
-          link: '/admin/fire'
+          link: '/admin/fire',
         },
         {
           title: 'Add Service',
           text: 'Menu for adding new Services',
           btn: 'Add',
-          link: '/admin/service'
+          link: '/admin/service',
         },
-      ]
+      ],
+    };
+  },
+  mounted() {
+    if (!this.$store.state.user.admin) {
+      this.$router.push('/');
     }
   },
-  mounted(){
-    if(!this.$store.state.user.admin){
-      this.$router.push("/");
-    }
-  }
-}
+};
 </script>

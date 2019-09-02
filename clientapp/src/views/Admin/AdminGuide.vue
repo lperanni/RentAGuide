@@ -26,12 +26,12 @@
             <v-col cols="12">
               <h3>Languages</h3>
             </v-col>
-              <v-checkbox 
-                v-for="language in languages" 
+              <v-checkbox
+                v-for="language in languages"
                 v-model="selectLang"
-                :key="language.id" 
-                :label="language.language_name" 
-                :value="language" 
+                :key="language.id"
+                :label="language.language_name"
+                :value="language"
                 >
               </v-checkbox>
             </v-row>
@@ -39,12 +39,12 @@
               <v-col cols="12">
                 <h3>Services</h3>
               </v-col>
-              <v-checkbox 
-                v-for="service in services" 
+              <v-checkbox
+                v-for="service in services"
                 v-model="selectServ"
-                :key="service.id" 
-                :label="service.service_name" 
-                :value="service" 
+                :key="service.id"
+                :label="service.service_name"
+                :value="service"
                 >
               </v-checkbox>
             </v-row>
@@ -62,8 +62,8 @@
 import axios from 'axios';
 
 export default {
-  data(){
-    return{
+  data() {
+    return {
       first_name: '',
       last_name: '',
       email: '',
@@ -73,31 +73,31 @@ export default {
       prices: [],
       selectLang: [],
       selectServ: [],
-    }
+    };
   },
   methods: {
 
-    registerGuide(){
+    registerGuide() {
       axios.post(`${process.env.VUE_APP_BASE_URL}/guide`, {
         first_name: this.first_name,
         last_name: this.last_name,
         email: this.email,
         phone_number: this.phone_number,
         languages: this.selectLang,
-        services: this.selectServ
+        services: this.selectServ,
       }).then(() => {
-        alert("Guide info saved successfully");
-        this.$router.push('/admin/menu')
-      })
-    }
+        alert('Guide info saved successfully');
+        this.$router.push('/admin/menu');
+      });
+    },
 
   },
-  created(){
+  created() {
     axios.get(`${process.env.VUE_APP_BASE_URL}/language`)
-      .then(response => this.languages = response.data)
+      .then(response => this.languages = response.data);
 
     axios.get(`${process.env.VUE_APP_BASE_URL}/service`)
-      .then(response => this.services = response.data)
-  }
-}
+      .then(response => this.services = response.data);
+  },
+};
 </script>

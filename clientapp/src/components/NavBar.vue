@@ -95,12 +95,12 @@ export default {
       }
       return 0;
     },
-    isAdmin(){
-      if(this.$store.state.user.admin === true){
+    isAdmin() {
+      if (this.$store.state.user && this.$store.state.user.admin === true) {
         return true;
       }
       return false;
-    }
+    },
   },
 
 };

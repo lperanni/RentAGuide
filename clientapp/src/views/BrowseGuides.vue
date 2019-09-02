@@ -23,6 +23,7 @@
               <th class="text-left">Email</th>
               <th class="text-left">Joined</th>
               <th class="text-left">Phone Number</th>
+              <th class="text-left">Profile</th>
             </tr>
           </thead>
           <tbody>
@@ -31,6 +32,7 @@
               <td>{{ item.email }}</td>
               <td>{{ item.joined }}</td>
               <td>{{ item.phone_number }}</td>
+              <td><v-btn class="success" @click="rateGuide(item.id)">Rate</v-btn></td>
             </tr>
           </tbody>
         </v-simple-table>
@@ -67,7 +69,9 @@ export default {
     };
   },
   methods: {
-
+    rateGuide(id) {
+      this.$router.push({ path: '/rate', query: { id } });
+    },
   },
   mounted() {
     axios.get(`${process.env.VUE_APP_BASE_URL}/${this.item}`)

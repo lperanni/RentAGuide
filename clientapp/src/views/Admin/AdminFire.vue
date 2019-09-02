@@ -40,24 +40,23 @@
 import axios from 'axios';
 
 export default {
-    data(){
-        return{
-            guides: [],
-            show: false,
-        }
+  data() {
+    return {
+      guides: [],
+      show: false,
+    };
+  },
+  methods: {
+    fireGuide(id) {
+      axios.delete(`${process.env.VUE_APP_BASE_URL}/guide/${id}`)
+        .then(() => this.show = true)
+        .catch(err => console.log(`Couldnt fire guide ${err}`));
     },
-    methods: {
-      fireGuide(id){
-   
-        axios.delete(`${process.env.VUE_APP_BASE_URL}/guide/${id}`)
-          .then(() => this.show = true)
-          .catch(err => console.log(`Couldnt fire guide ${err}`))
-      }
-    },
-    mounted(){
-        axios.get(`${process.env.VUE_APP_BASE_URL}/guide`)
-            .then(response => this.guides = response.data)
-            .catch(err => console.log(err));
-    }
-}
+  },
+  mounted() {
+    axios.get(`${process.env.VUE_APP_BASE_URL}/guide`)
+      .then(response => this.guides = response.data)
+      .catch(err => console.log(err));
+  },
+};
 </script>

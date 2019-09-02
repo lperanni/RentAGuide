@@ -5,7 +5,7 @@
     </v-row>
     <v-row class="mt-4">
       <v-carousel>
-        <v-carousel-item 
+        <v-carousel-item
           v-for="location in locations"
           :key="location.id"
           :src="require(`../assets/images/locations/${location.img_name}`)"

@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mt-5">
+  <v-container class="mt-5 pa-5">
     <v-row>
       <p class="subtitle-1 grey--text">Services</p>
     </v-row>
@@ -18,14 +18,14 @@
 import axios from 'axios';
 
 export default {
-  data(){
-    return{
+  data() {
+    return {
       services: [],
-    }
+    };
   },
   mounted() {
     axios.get(`${process.env.VUE_APP_BASE_URL}/service`)
       .then(response => this.services = response.data);
-  }
-}
+  },
+};
 </script>

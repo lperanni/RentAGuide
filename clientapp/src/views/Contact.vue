@@ -36,8 +36,12 @@ export default {
   },
   methods: {
     sendMessage() {
-      const mailToSend = new Message(this.userMail, this.subject, this.message);
-      mailToSend.send();
+      // Uncomment if you want to use the mailing service and have configured the .env variables accordingly
+
+      // const mailToSend = new Message(this.userMail, this.subject, this.message);
+      // mailToSend.send();
+      alert('Message sent');
+      this.$router.push('/');
     },
   },
 };

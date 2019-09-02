@@ -36,7 +36,7 @@ export default {
         },
         {
           title: 'How can you contact us?',
-          text: "If you have an account don't hesitate to use our contact form to send us a message and you will hear from us as soon as possible"
+          text: "If you have an account don't hesitate to use our contact form to send us a message and you will hear from us as soon as possible",
         },
 
       ],

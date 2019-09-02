@@ -26,24 +26,23 @@
 import axios from 'axios';
 
 export default {
-  data(){
+  data() {
     return {
       service_name: '',
       description: '',
       showSuccess: false,
-      showFail: false
-    }
+      showFail: false,
+    };
   },
   methods: {
-    addService(){
+    addService() {
       axios.post(`${process.env.VUE_APP_BASE_URL}/service`, {
         service_name: this.service_name,
-        description: this.description
+        description: this.description,
       }).then(() => this.showSuccess = true)
         .catch(() => this.showFail = true);
+    },
+  },
 
-    }
-  }
-    
-}
+};
 </script>

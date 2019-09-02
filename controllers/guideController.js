@@ -57,7 +57,7 @@ export default class GuideController {
         id: Number(req.params.id)
       }
     }).then(user => res.json(user))
-      .catch(err => res.status(404).send("User not found"));
+      .catch(() => res.status(404).send("User not found"));
   }
 
   static async updateGuideInfo(req, res){

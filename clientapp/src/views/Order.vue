@@ -8,11 +8,8 @@
         <v-row>
           <v-col lg="4" sm="12">
             <v-row>
-              <v-col lg="12">
+              <v-col class="ml-7" lg="12">
                 <v-date-picker v-model="date" block ></v-date-picker>
-              </v-col>
-              <v-col cols="12">
-                <v-btn class="success" width="290" @click="sendOrder">Send</v-btn>
               </v-col>
             </v-row>
           </v-col>
@@ -36,14 +33,19 @@
             </v-row>
           </v-col>
         </v-row>
-        <v-alert type="info" v-model="show">
-          {{ 
-            serviceName? 
+        <v-row>
+          <v-col class="ml-7" cols="12">
+            <v-btn class="success" width="290" @click="sendOrder">Send</v-btn>
+          </v-col>
+        </v-row>
+        <v-alert type="info" v-model="show" transition="slide-x-transition">
+          {{
+            serviceName?
               this.services.find(
-                service => 
-                  service.Service.service_name === serviceName).price + ' HRK': '' 
+                service =>
+                  service.Service.service_name === serviceName).price + ' HRK': ''
           }}
-        </v-alert> 
+        </v-alert>
       </v-form>
     </v-row>
   </v-container>
@@ -68,14 +70,13 @@ export default {
       possibleLocations: [],
       languages: [],
       services: [],
-      show: true,
+      show: false,
       hours: ['9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22'],
     };
   },
-  
-  methods: {
-    sendOrder(){
 
+  methods: {
+    sendOrder() {
       axios.post(`${process.env.VUE_APP_BASE_URL}/job`, {
         date: this.date,
         end_time: this.end_time,
@@ -84,12 +85,12 @@ export default {
         locationID: this.locationID,
         serviceID: this.serviceID,
         start_time: this.start_time,
-        userID: this.$store.state.user.id
+        userID: this.$store.state.user.id,
       }).then(() => {
-        this.$router.push("/");
-        alert("Guide reservation successful. Our guide will call you on the day before");
-      })
-    }
+        this.$router.push('/');
+        alert('Guide reservation successful. Our guide will call you on the day before');
+      });
+    },
   },
   computed: {
     userID() {
@@ -114,27 +115,26 @@ export default {
       }
       return null;
     },
-    languageID(){
-      if(this.languageName) {
+    languageID() {
+      if (this.languageName) {
         const lang = this.languages.find(lang => lang.Language.language_name === this.languageName);
         return Object.values(lang)[0];
       }
       return null;
     },
-    locationID(){
-      if(this.locationName) {
+    locationID() {
+      if (this.locationName) {
         const location = this.possibleLocations.find(location => location.location_name === this.locationName);
         return Object.values(location)[0];
       }
       return null;
     },
-    serviceID(){
-      if(this.serviceName) {
+    serviceID() {
+      if (this.serviceName) {
         const service = this.services.find(service => service.Service.service_name === this.serviceName);
         return Object.values(service)[0];
       }
       return null;
-
     },
     languageNames() {
       return this.languages.map(lang => lang.Language.language_name);
@@ -153,6 +153,9 @@ export default {
 
       axios.get(`http://localhost:5000/api/guide/${this.guideID}/service`)
         .then(response => this.services = response.data);
+    },
+    serviceName() {
+      this.show = true;
     },
 
   },
